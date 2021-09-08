@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-hant-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資訊科技-308</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <style>
+        body{
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .bg {
+            height: 100vh;
+            background-image: url(/bgp.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body class="bg">
+    <div id="app"
+        class="w-100 d-flex"
+        style="height: 100vh; background-color: rgb(228 81 1 / 48%);">
+        <!-- 隨機問答區 -->
+       <div class=" rounded m-3 bg-light shadow-lg" style="width: 302px;">
+           <iframe class="w-100 h-100" src="https://tlk.io/301cs" frameborder="0"></iframe>
+       </div>
+       <!-- 公告區 -->
+       <div class="m-3 d-flex flex-column justify-content-around" style="width: calc(100vw - 350px);">
+           <!-- 全部公告區 -->
+           <div>
+                <iframe style="height: 45vh;" class="w-100 rounded shadow" src="/public"  frameborder="0"></iframe>
+           </div>
+           <!-- 班級公告區 -->
+           <div style="height: 45vh;" class="w-100 rounded shadow p-4 bg-light">
+            <h2>班級公告區</h2>
+                <ul>
+                    <li v-for="(item, index) in messages" class="d-flex justify-content-between align-items-end  border-bottom pb-1">
+                        <span>
+                            {{index+1}}. 
+                            <a target="_blank" :href="item.url">{{item.text}}</a>
+                        </span>
+                        <small class="small text-secondary ">{{item.date}}</small>
+                    </li>
+                </ul>
+           </div>
+       </div>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            messages: [
+                {
+                    text:"需要填寫測量表(7號)",
+                    url:"https://exam.tcte.edu.tw/tbt_html/",   
+                    date:"2021/09/09"
+                }
+            ]
+        }
+    })
+</script>
+
+</html>

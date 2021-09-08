@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-hant-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資訊科技-選擇班級</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .bg {
+            height: 100vh;
+            background-image: url(/bgp.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body class="bg">
+    <div id="app" class="d-flex justify-content-center align-items-center"
+        style="height: 100vh; background-color: rgb(228 81 1 / 48%);">
+        <div class="rounded p-5 shadow-lg" style="background-color: #ffffff8c;">
+            <h4 class="text-white text-center">資訊科技</h4>
+            <div class="d-flex flex-column ">
+                <input v-model="want_goto_class_number" class="my-1 rounded border text-center py-2" type="text" placeholder="班級">
+                <button @click="jump2ClassPage()" class="my-1 w-100 bt btn-dark rounded py-2">進 入</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            want_goto_class_number: '',
+            can_use_class:{
+                '205':true,
+                '206':true,
+                '301':true,
+                '308':true,
+            }
+        },
+        methods: {
+            jump2ClassPage: function(){
+                const vm = this;
+                // console.log(vm.want_goto_class_number);
+                if(vm.can_use_class[vm.want_goto_class_number]){
+                    window.location.href=`/${vm.want_goto_class_number}`;
+                }else{
+                    alert('sorry 你輸入的班級並不是我授課的班級QQ')
+                }
+            }
+        }
+    })
+</script>
+
+</html>
